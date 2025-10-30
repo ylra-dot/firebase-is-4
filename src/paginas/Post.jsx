@@ -12,7 +12,7 @@ import {
   serverTimestamp,
 } from "firebase/firestore";
 import EmojiPicker from "emoji-picker-react";
-import { Sun, Moon } from "lucide-react";
+
 
 function Post() {
   const [post, setPost] = useState([]);
@@ -83,8 +83,10 @@ function Post() {
     setMensaje((prev) => prev + emojiData.emoji);
   };
 
+
+
   return (
-    <div className="flex flex-col items-center w-full max-w-lg mt-8">
+    <div className="min-h-screen flex flex-col items-center justify-start pt-12 px-4 bg-gray-50 dark:bg-gray-900 transition-colors duration-500">
       {/* Header */}
       <h1 className="text-3xl font-bold mb-8">📝 Lista de Posts</h1>
 
@@ -126,10 +128,8 @@ function Post() {
       </form>
 
       {/* Lista */}
-      <ul
-        className="w-full max-w-lg shadow-lg rounded-lg p-6 space-y-4
-               bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700"
-      >
+        <ul className="w-full max-w-lg shadow-lg rounded-2xl p-6 space-y-4
+     bg-white/80 dark:bg-gray-800/90 backdrop-blur-md border border-gray-300 dark:border-gray-700">
         {post.length === 0 ? (
           <p className="text-gray-400 text-center">No hay posts aún 😢</p>
         ) : (

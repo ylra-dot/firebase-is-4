@@ -1,27 +1,29 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Sun, Moon, Menu, X } from "lucide-react";
+import { useModo } from "../context/ModoContext";
 
-function Navbar({ modoOscuro, alternarModo }) {
+export default function Navbar() {
+  const { modoOscuro, alternarModo } = useModo();
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   const toggleMenu = () => setMenuAbierto(!menuAbierto);
 
   const links = [
-    { to: "/", label: "Inicio" },
-    { to: "/publicar", label: "Publicar" },
-    { to: "/perfil", label: "Perfil" },
-    { to: "/acerca", label: "Acerca de" },
+    { to: "/Inicio", label: "Inicio" },
+    { to: "/Usuario", label: "Usuarios" },
+    { to: "/Post", label: "Post" },
+    { to: "/Productos", label: "Productos" },
   ];
 
   return (
     <nav
-      className={`w-full transition-colors duration-500 shadow-md sticky top-0 z-50 ${
-        modoOscuro ? "bg-gray-900 text-gray-100" : "bg-white text-gray-900"
+      className={`w-full transition-colors duration-500 shadow-md ${
+        modoOscuro ? "bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-900"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
-        {/* 🧭 Logo / título */}
+      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+        {/* 🔹 Logo */}
         <Link
           to="/"
           className="text-2xl font-bold tracking-wide hover:text-blue-500 transition-colors"
@@ -29,9 +31,23 @@ function Navbar({ modoOscuro, alternarModo }) {
           📝 Mis Posts
         </Link>
 
-        {/* 🌗 Botones */}
+        {/* 🔹 Enlaces centrados (pantallas grandes) */}
+        <ul className="hidden sm:flex gap-8 font-medium mx-auto">
+          {links.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* 🔹 Botones (modo oscuro + menú móvil) */}
         <div className="flex items-center gap-3">
-          {/* 🌙/☀️ Modo oscuro */}
+          {/* Botón de modo oscuro */}
           <button
             onClick={alternarModo}
             className="p-2 rounded-full border border-gray-400 hover:scale-110 transition-transform duration-300"
@@ -44,43 +60,30 @@ function Navbar({ modoOscuro, alternarModo }) {
             )}
           </button>
 
-          {/* 🍔 Menú móvil */}
+          {/* Botón de menú móvil */}
           <button
             onClick={toggleMenu}
             className="sm:hidden p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-800 transition"
+            aria-label="Abrir menú"
           >
             {menuAbierto ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* 🧩 Enlaces Desktop */}
-        <ul className="hidden sm:flex gap-6 font-medium">
-          {links.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                className="hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
       </div>
 
-      {/* 📱 Menú Móvil */}
+      {/* 🔹 Menú móvil (solo visible cuando está abierto) */}
       {menuAbierto && (
         <ul
-          className={`sm:hidden flex flex-col gap-4 px-6 pb-4 font-medium border-t ${
-            modoOscuro ? "border-gray-700 bg-gray-900" : "border-gray-200 bg-white"
+          className={`sm:hidden flex flex-col items-center gap-3 py-3 border-t transition-colors duration-500 ${
+            modoOscuro ? "border-gray-700 bg-gray-900" : "border-gray-200 bg-gray-100"
           }`}
         >
           {links.map((link) => (
             <li key={link.to}>
               <Link
                 to={link.to}
-                onClick={() => setMenuAbierto(false)}
-                className="block py-2 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
+                onClick={() => setMenuAbierto(false)} // 🔹 Cierra el menú al hacer clic
+                className="block px-4 py-2 hover:text-blue-500 dark:hover:text-blue-400 transition"
               >
                 {link.label}
               </Link>
@@ -91,5 +94,3 @@ function Navbar({ modoOscuro, alternarModo }) {
     </nav>
   );
 }
-
-export default Navbar;
