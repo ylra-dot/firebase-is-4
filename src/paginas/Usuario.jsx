@@ -1,14 +1,6 @@
 import { useState, useEffect } from "react";
 import { db } from "../lib/firebase";
-import {
-  collection,
-  query,
-  onSnapshot,
-  addDoc,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import {collection,query,onSnapshot,addDoc,deleteDoc,doc,updateDoc} from "firebase/firestore";
 import { useModo } from "../context/ModoContext";
 
 export default function Usuario() {

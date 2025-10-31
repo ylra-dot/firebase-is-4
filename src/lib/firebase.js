@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-
+import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,8 +12,14 @@ const firebaseConfig = {
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
+
 console.log("🔥 Firebase config:", import.meta.env);
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-//Inicializar servicio de FireStore
-export const db = getFirestore(app)
+
+// Inicializar Firestore
+export const db = getFirestore(app);
+
+// Inicializar Storage
+export const storage = getStorage(app);
