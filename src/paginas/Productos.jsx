@@ -1,22 +1,8 @@
 // src/paginas/Productos.jsx
 import { useEffect, useState } from "react";
 import { db, storage } from "../lib/firebase";
-import {
-  collection,
-  addDoc,
-  doc,
-  updateDoc,
-  deleteDoc,
-  onSnapshot,
-  query,
-  orderBy,
-} from "firebase/firestore";
-import {
-  ref,
-  uploadBytes,
-  getDownloadURL,
-  deleteObject,
-} from "firebase/storage";
+import {collection,addDoc,doc,updateDoc,deleteDoc,onSnapshot,query,orderBy,} from "firebase/firestore";
+import {ref,uploadBytes,getDownloadURL,deleteObject,} from "firebase/storage";
 
 const ETIQUETAS_OPCIONES = [
   "Nuevo",
@@ -259,9 +245,9 @@ function Productos() {
       </h1>
 
       {/* Grid formulario + preview */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 ">
         {/* FORMULARIO CREAR */}
-        <div className="lg:col-span-1 bg-white dark:bg-gray-900 rounded-xl shadow p-5">
+        <div className="lg:col-span-1 bg-gray-900 dark:bg-gray-900 rounded-xl shadow p-5">
           <h2 className="text-xl font-semibold mb-3">Crear Producto</h2>
           <form onSubmit={crearProducto} className="space-y-3">
             <input
@@ -280,7 +266,7 @@ function Productos() {
               className="w-full p-2 rounded border bg-gray-100 dark:bg-gray-800"
             />
 
-            <div className="flex gap-2">
+            <div className="flex gap-1">
               <input
                 name="precio"
                 type="number"
@@ -288,16 +274,16 @@ function Productos() {
                 value={form.precio}
                 onChange={handleChange}
                 placeholder="Precio"
-                className="flex-1 p-2 rounded border bg-gray-100 dark:bg-gray-800"
+                className="flex-1 p-4 rounded border bg-gray-100 dark:bg-gray-800"
               />
               <input
                 name="precioOferta"
                 type="number"
-                step="0.01"
+                step="0.1"
                 value={form.precioOferta}
                 onChange={handleChange}
                 placeholder="Precio oferta (opcional)"
-                className="w-40 p-2 rounded border bg-gray-100 dark:bg-gray-800"
+                className="w-30 p-2 rounded border bg-gray-100 dark:bg-gray-800"
               />
             </div>
 

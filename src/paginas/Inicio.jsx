@@ -3,8 +3,8 @@ import { Rocket, Zap, Database, Sun, Moon } from "lucide-react";
 
 function Inicio() {
   return (
-    <div className="flex flex-col items-center justify-center text-center py-20 px-6">
-      <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-blue-600 dark:text-blue-400">
+    <div className="flex flex-col items-center justify-center text-center py-20 px-6 bg-gray-900">
+      <h1 className="text-4xl sm:text-5xl font-bold mb-6 text-blue-600 dark:text-blue-500">
         Bienvenido a FirebaseApp 🚀
       </h1>
 

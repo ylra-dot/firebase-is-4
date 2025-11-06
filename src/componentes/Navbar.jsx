@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Sun, Moon, Menu, X } from "lucide-react";
 import { useModo } from "../context/ModoContext";
+import { ZonaUsuario } from "../componentes/ZonaUsuario";
+
 
 export default function Navbar() {
   const { modoOscuro, alternarModo } = useModo();
@@ -19,13 +21,13 @@ export default function Navbar() {
   return (
     <nav
       className={`w-full transition-colors duration-500 shadow-md ${
-        modoOscuro ? "bg-gray-900 text-gray-100" : "bg-gray-100 text-gray-900"
+        modoOscuro ? "bg-gray-800 text-gray-100" : "bg-gray-100 text-gray-900"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
         {/* 🔹 Logo */}
         <Link
-          to="/"
+          to="/Registro"
           className="text-2xl font-bold tracking-wide hover:text-blue-500 transition-colors"
         >
           📝 Mis Posts
@@ -45,8 +47,12 @@ export default function Navbar() {
           ))}
         </ul>
 
+          
+          
+
         {/* 🔹 Botones (modo oscuro + menú móvil) */}
         <div className="flex items-center gap-3">
+          <ZonaUsuario />
           {/* Botón de modo oscuro */}
           <button
             onClick={alternarModo}
